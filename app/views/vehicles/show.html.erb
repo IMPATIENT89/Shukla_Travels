@@ -1,0 +1,31 @@
+<div class="container-fluid" style="overflow-x: auto;">
+  <div class="row justify-content-center">
+    <div class="col-lg-4 mt-4">
+      <h2 class="text-center mt-4"><%= @vehicle.car_name %></h2>
+      <div class="card text-center shadow mb-5 bg-white rounded">
+        <div class="card-header ">
+          Vehicle Rgistered by <%= link_to @vehicle.hoste.host_full_name, hoste_path(@vehicle.hoste) %>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Vehicle number :- <%=(@vehicle.vehicle_no.upcase) %></p>
+          <p class="card-text">Registration number :- <%=(@vehicle.registration_no) %></p>
+          <p class="card-text"> Number of Seats = <%= @vehicle.no_of_seats %></p>
+          <% if @vehicle.hoste == current_host %>
+            <%= link_to "Back to all vehicles listing", vehicles_path, class: "btn btn-primary"%>
+            <%= link_to "Edit vehicle info", edit_vehicle_path(@vehicle), class: "btn btn-info" %>
+            <%= button_to "Delete", vehicle_path(@vehicle), class: "btn btn-danger mt-2 ",method: :delete, onclick: "return confirm('Are you sure?')" %> 
+          <% end %>
+        </div>
+        <div class="card-footer text-muted">
+          <small>Created <%= time_ago_in_words(@vehicle.created_at) %> ago</small><br>
+          <small>Updated <%= time_ago_in_words(@vehicle.updated_at) %> ago</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 class="text-center">Trips Booked with this Vehicle:- </h2>
+
+<%= render 'bookings/booking' %>
+  
+

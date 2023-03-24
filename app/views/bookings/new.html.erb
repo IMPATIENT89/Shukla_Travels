@@ -1,0 +1,83 @@
+<body class="booking" id="bkngnew">
+    <div class="container-fluid" style="overflow-x: auto;">
+    <div class="row justify-content-center" >  
+      <div class="col-lg-4 mt-2" id="booking-container">
+        <div class="container text-center">
+          <h1 class="text-dark" style="font-weight: bold;"> Do your Booking</h1>
+        </div>
+        <div class="container" id="cnterror">
+          <%= render 'shared/errors', obj: @booking %>
+        </div>
+        <div class="container text-white" id="cntbkng"> 
+          <div class="row justify-content-center">
+            <div class="col-7">
+              <%= form_with(model: @booking, local: true, data: { controller: "places", action: "google-maps-callback@window->places#initMap"}) do |form| %>
+                <div class="form-group row mt-3">
+                  <%= form.label :how_many_people, "Number of People", class: "col-6 col-form-label text-light " %>
+                  <div class="col-14">
+                    <%= form.text_field :how_many_people, class: "form-control shadow mb-4 bg-white rounded", placeholder: "Number of people that are going" %>
+                  </div>
+                </div> 
+                <div class="form-group row">
+                  <%= form.label :booking_from, "Origin Address", class: "col-6 col-form-label text-light " %>
+                  <div class="col-14"> 
+                    <%= form.search_field :booking_from, class: "form-control shadow mb-4 bg-white rounded", placeholder: "Enter the full address of origin.", data: { target: "places.field", action: "keydown->places#keydown" } %>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <%= form.label :booking_to, "Destination Address", class: "col-6 col-form-label text-light " %>
+                  <div class="col-14"> 
+                    <%= form.search_field :booking_to, class: "form-control shadow mb-4 bg-white rounded", placeholder: "Enter the full address of destination.", data: { target: "places.field", action: "keydown->places#keydown" } %>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <%= form.label :booking_date, class: "col-6 col-form-label text-light " %>
+                  <div class="col-14"> 
+                    <%= form.datetime_field :booking_date, class: "form-control shadow mb-4 bg-white rounded", placeholder: "Enter the date and time of starting the journey" %>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <%= form.label :vehicle, class: "col-6 col-form-label text-light" %>
+                  <div class="col-14"> 
+                    <%= form.collection_select(:vehicle_ids, Vehicle.all, :id, :car_name, { prompt: "Make the selection from the list below"}, {multiple: true, size: 3, class: "form-control custom-select shadow mb-4 rounded"}) %>
+                  </div>
+                </div>
+                <h4 class="mt-4 mb-3">Card Details</h4>
+                <hr>
+                <div class="form-group">
+                  <%= form.label :card_number, class: "mb-2 mt-2" %>
+                  <%= form.text_field :card_number, class: "form-control", required: true %>
+                </div>
+                <div class="row">
+                  <div class="col-lg-3">
+                    <div class="form-group">
+                      <%= form.label :cvv, class: "mb-2 mt-2" %>
+                      <%= form.text_field :cvv, class: "form-control", required: true, maxlength: 4 %>
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="form-group">
+                      <%= form.label :month, class: "mb-2 mt-2" %>
+                      <%= form.number_field :exp_month, class: "form-control", required: true, min: 1, max: 12 %>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <%= form.label :exp_year, class: "mb-2 mt-2" %>
+                      <%= form.text_field :exp_year, class: "form-control", required: true, min: 2022, max: 2026 %>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="input-group justify-content-center mb-3">
+                  <%= form.submit"Confirm Booking!", class: "btn btn-outline-light btn-lg text-center " %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <h2 class="text-center mt-3"> <%= link_to "Cancel and Return to all Bookings",bookings_path, class: "btn btn-primary" %> </h2>
+      </div>
+    </div>
+    </div>
+</body>

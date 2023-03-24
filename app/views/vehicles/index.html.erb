@@ -1,0 +1,30 @@
+<body class="signbody" id="bkngbody">  
+  <h1 class="text-center mb-3 mt-3" id="bknghone">Your Vehicles</h1>
+  <div class="container-fluid" style="overflow-x: auto;">
+    <div class="row justify-content-md-center">
+    <% @vehicles.each do |vehicle| %>
+      <% if vehicle.hoste == current_host %>
+          <div class="col-lg-5 mt-3">
+            <div class="card text-center shadow mb-3 bg-white rounded">
+              <div class="card-header ">
+                 Vehicle by <%= link_to vehicle.hoste.host_full_name, hoste_path(vehicle.hoste) %> 
+              </div>       
+              <div class="card-body">
+                <%= image_tag("care.jpeg", class: "car-avatar")%>
+                <h5 class="card-title"><%= link_to vehicle.car_name, vehicle_path(vehicle), class: "text-success" %></h5>
+                <p class="card-text"><%= truncate(vehicle.vehicle_no.upcase, length: 15) %></p>
+                <%= link_to "View", vehicle_path(vehicle), class: "btn btn-outline-success" %>
+                <%= link_to "Edit", edit_vehicle_path(vehicle), class: "btn btn-outline-info", style: "margin-left: 2px;"  %>
+                <%= button_to "Delete", vehicle_path(vehicle), class: "btn btn-outline-danger mt-2 ",method: :delete, onclick: "return confirm('Are you sure?')" %>
+              </div>
+              <div class="card-footer text-muted">
+                <small>Created <%= time_ago_in_words(vehicle.created_at) %> ago</small>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+
+</body>

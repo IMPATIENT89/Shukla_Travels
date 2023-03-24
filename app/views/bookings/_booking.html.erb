@@ -1,0 +1,35 @@
+<div class="container-fluid" style="overflow-x: auto;">
+  <div class="row justify-content-center">
+    <% @bookings.each do |booking| %>
+      <% if booking.customer == current_customer%>
+        <div class="col-lg-4 mt-3">
+          <div class="card text-center shadow mb-3 ms-2 me-2 bg-white rounded">
+            <div class="card-header ">
+               Trip by <%= link_to booking.customer.customer_full_name, customer_path(booking.customer) %> 
+            </div>       
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to booking.booking_date, booking_path(booking), class: "text-success" %></h5>
+              <h4 class="card-text">
+                <%= image_tag("origin.png") %>
+                <% booking_from = booking.booking_from %>
+                <% truncated_booking_from = booking_from.split(',').first.capitalize %>
+                <%= truncated_booking_from %>
+                <%= image_tag("arrow.png") %>
+                <% booking_to = booking.booking_to %>
+                <% truncated_booking_to = booking_to.split(',').first.capitalize %>
+                <%= truncated_booking_to %>
+                <%= image_tag("destination.png") %>
+              </h4>
+              <%= link_to "View", booking_path(booking), class: "btn btn-outline-success" %>
+              <%= link_to "Edit", edit_booking_path(booking), class: "btn btn-outline-info", style: "margin-left: 2px;"  %>
+              <%= button_to "Delete", booking_path(booking), class: "btn btn-outline-danger mt-2 ",method: :delete, onclick: "return confirm('Are you sure?')" %>
+            </div>
+            <div class="card-footer text-muted">
+              <small>Created <%= time_ago_in_words(booking.created_at) %> ago</small>
+            </div>
+          </div>
+        </div>   
+      <% end %>
+    <% end %>
+  </div>
+</div>

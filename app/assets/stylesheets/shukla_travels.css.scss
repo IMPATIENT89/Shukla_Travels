@@ -1,0 +1,300 @@
+.navbar {
+  font-weight: bold;
+  background-color: #00000080 !important;
+  background-image: asset-url("navbar-shukla.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#signupbody,
+#loginbody,
+#aboutbody,
+#bkngnew,
+#homebody,
+#bkngbody,
+#accntbody,
+#vhcnew {
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+}
+#signupbody {
+  background-image: asset-url("road.jpg");
+}
+#loginbody {
+  background-image: asset-url("roadtwo.jpg");
+}
+#aboutbody {
+  background-image: asset-url("about.jpg");
+}
+
+#bkngnew {
+  background-image: asset-url("carsroad.jpg");
+}
+#homebody {
+  background-image: asset-url("homebg.jpg");
+}
+#bkngbody {
+  background-image: asset-url("about.jpg");
+}
+#accntbody {
+  background-image: asset-url("youraccount.jpg");
+  color: white;
+}
+#vhcnew {
+  background-image: asset-url("regbg.jpg");
+}
+
+#home-container {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+}
+
+#homehone {
+  font-size: 36px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: white !important;
+}
+#homep {
+  font-size: 18px;
+  margin-bottom: 40px;
+  font-weight: bold;
+  color: white !important;
+}
+#cntsgnup,
+#cntbkng,
+#cntlogin,
+#accntcard,
+#rightcard,
+#cntvehnew {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+}
+.form-group {
+  font-weight: bold;
+}
+
+#cnterror {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30%;
+}
+
+.btn-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.btn-close:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+#login-container {
+  position: absolute;
+  top: 34%;
+}
+
+h1#lgninhone {
+  position: absolute;
+  top: 20%;
+  left: 39%;
+  font-weight: bold;
+}
+
+.pagination-box {
+  background-color: white !important;
+  width: 15%;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0px 0px 10px #ddd;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.pagination-container {
+  display: inline;
+}
+
+.myimg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.avatar {
+  height: 100px;
+  border-radius: 50%;
+}
+.car-avatar {
+  height: 200px;
+  width: 300px;
+  border-radius: 5%;
+}
+
+.cstmr-info .cstmr-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+.cstmr-info .cstmr-phone {
+  font-size: 15px;
+  margin: 0;
+}
+.cstmr-info .cstmr-email {
+  font-size: 15px;
+}
+
+.imgBx {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  bottom: 10px;
+  right: 10px;
+  background: #222;
+  transition: 0.5s;
+  z-index: 1;
+}
+
+#teamcard:hover .imgBx {
+  bottom: 80px;
+}
+
+#teamcard .imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.member-head {
+  font-size: 38px;
+  text-decoration: underline;
+  letter-spacing: 4px;
+}
+.member {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: sans-serif;
+}
+.box {
+  width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 15px;
+  margin: 0 auto;
+}
+#teamcard {
+  position: relative;
+  width: 300px;
+  height: 350px;
+  background: #fff;
+  margin: 0 auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+#teamcard:before,
+#teamcard:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background: #fff;
+  transition: 0.5s;
+  z-index: -1;
+}
+#teamcard:hover:before {
+  transform: rotate(20deg);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+#teamcard:hover:after {
+  transform: rotate(10deg);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+#teamcard .details {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  height: 60px;
+  text-align: center;
+}
+
+#teamcard .details h2 {
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+  font-size: 20px;
+  color: #777;
+  text-transform: uppercase;
+}
+
+#teamcard .details h2 span {
+  font-weight: 500;
+  font-size: 16px;
+  color: #f38695;
+  display: block;
+  margin-top: 5px;
+}
+.one-head {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  font-size: 40px;
+  font-family: cursive;
+  color: #080808;
+}
+
+.one h1 {
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+}
+.one h1:before {
+  width: 28px;
+  height: 5px;
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  margin-left: -14px;
+  background-color: #b80000;
+}
+.one h1:after {
+  width: 100px;
+  height: 1px;
+  display: block;
+  content: "";
+  position: relative;
+  margin-top: 25px;
+  left: 50%;
+  margin-left: -50px;
+  background-color: #b80000;
+}
+#bkngshowbody {
+  background-color: #f5f5f5;
+}
+.car-avatar-bkng-show {
+  height: 100px;
+  width: 150px;
+}

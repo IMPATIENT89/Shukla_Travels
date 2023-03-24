@@ -1,0 +1,49 @@
+<body class="signbody" id="accntbody">  
+  <% if @hoste == current_host%>
+    <div class="container-fluid mt-5" style="overflow-x: auto;">
+      <div class="row justify-content-center">
+          <div class="col-lg-2 mt-5 " >
+            <div class="card shadow mb-3" id="accntcard">
+              <div class="card-body">   
+                <h4 class="card-title mb-2 text-center"> Your Details</h4>
+                <div class="myimg mt-2">
+                  <%= image_tag("myself.jpg", class: "avatar")%>
+                </div>
+                <div class="cstmr-info text-center mt-2">
+                  <p class="cstmr-name"> <%= @hoste.host_full_name %></p>
+                  <p class="cstmr-phone">+91-<%= @hoste.phone %></p>
+                  <p class="cstmr-email"><%= @hoste.email %></p>
+                  <hr>
+                </div>
+                <div class="bkngs-link text-center">
+                  <%= link_to "My Vehicles", vehicles_path, class: "text-white"%><hr>
+                  <%= link_to "Update Profile", edit_hoste_path, class: "text-white"%><hr>
+                  <%= link_to "Register a vehicle", new_vehicle_path, class: "text-white"%><hr>
+                  <p> Profile Verification </p><hr>
+                  <p>Contact Support</p><hr>
+              </div>   
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-lg-5 ms-5 mt-5">
+            <div class="card shadow mb-3" id="rightcard">
+              <div class="card-body">
+                <h2 class="card-title mb-2 text-center"> Your Vehicle Profile</h2><hr>
+                <h5>Total Vehicles Uploaded = <%= @hoste.vehicles.count%> <%= link_to "Increase this number to get points", new_vehicle_path, class: "text-white", style: "float: right; "%></h5><hr>
+                <h5>Total Points earned = <%= (@hoste.vehicles.count) * 200%> <small style="float: right;">1 vehicle = 200 Points, 1 Point = 1 Ruppee</small> </h5><hr>
+                <h5>Total Vehicles = <%= @hoste.vehicles.count%> </h5><hr>
+                <h5>Total Vehicles = <%= @hoste.vehicles.count%> </h5><hr>
+                <h5>Total Vehicles = <%= @hoste.vehicles.count%> </h5><hr>
+                <h5>Total Vehicles = <%= @hoste.vehicles.count%> </h5><hr>
+                <h5>Total Vehicles = <%= @hoste.vehicles.count%> </h5><hr>
+                <h5>Total Vehicles = <%= @hoste.vehicles.count%> </h5><hr>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  <% else %>
+    <%= link_to "Please login with your account to access your vehicles", sign_in_customer_path %>
+  <% end %>
+</body>

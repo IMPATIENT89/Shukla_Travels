@@ -1,0 +1,16 @@
+<div class="row">
+<div class="col-lg-10 mx-auto">
+  <div class="card shadow">
+    <div class="card-header">
+      <h4 class="card-title text-center">Booking Confirmation</h4>
+    </div>
+    <div class="card-body">
+      <h3>Greetings from Shukla Travels</h3>
+      <h4>Hello <%= @customer.customer_full_name %> </h4>
+      <p class="lead">Your booking trip from <strong> <%= @booking.booking_from.capitalize%> to <%= @booking.booking_to.capitalize%> has been confirmed. Please scan the following QR code to get booking details. </strong> </p>
+     
+      <%= @svg.html_safe%>
+      </div>
+  </div>
+</div>
+</div>

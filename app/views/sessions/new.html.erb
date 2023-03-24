@@ -1,0 +1,14 @@
+<body class="signbody" id="loginbody">  
+  <% if logged_in_as_host? || logged_in_as_customer?%>
+    <h1> Please Log out to continue</h1>
+  <% else %>
+    <div class="row justify-content-center ">
+      <div class="col-lg-3" id="login-container">
+        <div class="container text-center">
+          <h1> Sign In As a Customer</h1>
+        </div>
+        <%= render 'form' %>
+      </div>
+    </div>
+  <% end %>
+</body>

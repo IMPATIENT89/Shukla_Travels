@@ -1,0 +1,2 @@
+module SessionsHostHelper
+end

@@ -1,0 +1,51 @@
+<body class="signbody" id="accntbody">  
+  <% if @customer == current_customer%>
+  <div class="container-fluid mt-5" style="overflow-x: auto;">
+    <div class="row justify-content-center">
+        <div class="col-lg-2 mt-5 " >
+          <div class="card shadow mb-3" id="accntcard">
+            <div class="card-body">   
+              <h4 class="card-title mb-2 text-center"> Your Details</h4>
+              <div class="myimg mt-2">
+                <%= image_tag("myself.jpg", class: "avatar")%>
+              </div>
+              <div class="cstmr-info text-center mt-2">
+                <p class="cstmr-name"> <%= @customer.customer_full_name %></p>
+                <p class="cstmr-phone">+91-<%= @customer.phone %></p>
+                <p class="cstmr-email"><%= @customer.email %></p>
+                <hr>
+              </div>
+              <div class="bkngs-link text-center">
+                <%= link_to "My Bookings", bookings_path, class: "text-white"%><hr>
+                <%= link_to "Update Profile", edit_customer_path, class: "text-white"%><hr>
+                <%= link_to "Book a vehicle", new_booking_path, class: "text-white"%><hr>
+                <p> Profile Verification </p><hr>
+                <p>Contact Support</p><hr>
+              </div>   
+            </div>
+          </div>
+        </div>
+  
+       <div class="col-lg-5 ms-5 mt-5">
+       <div class="card shadow mb-3" id="rightcard">
+        <div class="card-body">
+          <h2 class="card-title mb-2 text-center"> Your Booking Profile</h2><hr>
+          <h5>Total Bookings = <%= @customer.bookings.count%> <%= link_to "Increase this number to get points", new_booking_path, class: "text-white", style: "float: right; "%></h5><hr>
+          <h5>Total Canceled Bookings = 0 </h5><hr>
+          <h5>Total Points earned = <%= (@customer.bookings.count) * 50%> <small style="float: right;">1 Booking = 50 Points, 1 Point = 1 Ruppee</small> </h5><hr>
+          <h5>Total Trip in this Month = <%= @customer.bookings.count%> </h5><hr>
+          <h5>Total Trip in this Year = <%= @customer.bookings.count%> </h5><hr>
+          <h5>Total Bookings = <%= @customer.bookings.count%> </h5><hr>
+          <h5>Total Bookings = <%= @customer.bookings.count%> </h5><hr>
+          <h5>Total Bookings = <%= @customer.bookings.count%> </h5><hr>
+        </div>
+       </div>
+       </div>
+    </div>
+  </div>
+  <% else %>
+    <%= link_to "Please login with your account to access your vehicles", sign_in_customer_path %>
+  <% end %>
+  
+</body>
+
