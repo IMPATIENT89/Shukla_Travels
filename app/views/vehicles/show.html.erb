@@ -7,6 +7,7 @@
           Vehicle Rgistered by <%= link_to @vehicle.hoste.host_full_name, hoste_path(@vehicle.hoste) %>
         </div>
         <div class="card-body">
+          <%= image_tag @vehicle.vehicle_image, class: "car-avatar-bkng-show" %>
           <p class="card-text">Vehicle number :- <%=(@vehicle.vehicle_no.upcase) %></p>
           <p class="card-text">Registration number :- <%=(@vehicle.registration_no) %></p>
           <p class="card-text"> Number of Seats = <%= @vehicle.no_of_seats %></p>

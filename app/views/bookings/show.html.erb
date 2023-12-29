@@ -8,7 +8,7 @@
               Trip by <%= @booking.customer.customer_full_name if @booking.customer %> 
             </div>
             <div class="card-body">
-            <%= image_tag("care.jpeg", class: "car-avatar-bkng-show")%>
+            <%= image_tag @booking.vehicle.vehicle_image, class: "car-avatar-bkng-show"%>
               <h4 class="card-text">
                 <%= image_tag("origin.png") %>
                 <% booking_from = @booking.booking_from %>
@@ -20,8 +20,8 @@
               </h4>              
               <h6 class="card-text"> Number of people going on the trip = <%= @booking.how_many_people %></h6>
               <h6 class="card-text"> Date of Journey = <%= @booking.booking_date %></h6>
-              <% if @booking.vehicles.any? %>
-                <h6 class="mt-2" >Car Chosen = <%= render @booking.vehicles%></h6>
+              <% if @booking.vehicle.present? %>
+                <h6 class="mt-2" >Car Chosen = <%= render @booking.vehicle%></h6>
               <% end %> 
               <% if @booking.customer == current_customer %>
                 <%= link_to "Back to all bookings", bookings_path, class: "btn btn-primary"%>

@@ -2,7 +2,7 @@ require 'stripe'
 
 class StripeService
     def initialize()
-        Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+        Stripe.api_key = "sk_test_51Mlnn9SGp43kXJ7FPQ6jtZeLAMMdgmfGkGJCOywJDHaoU42MFFWBxIc21ctwQmHomSR5unALG4AVHl3RwnvGIGHv00D9vxkh5T"
     end
     
     def create_payment_method(params)

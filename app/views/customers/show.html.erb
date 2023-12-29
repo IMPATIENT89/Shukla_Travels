@@ -7,8 +7,9 @@
             <div class="card-body">   
               <h4 class="card-title mb-2 text-center"> Your Details</h4>
               <div class="myimg mt-2">
-                <%= image_tag("myself.jpg", class: "avatar")%>
+                <%= image_tag url_for(@customer.profile_image), class: "avatar" %>
               </div>
+
               <div class="cstmr-info text-center mt-2">
                 <p class="cstmr-name"> <%= @customer.customer_full_name %></p>
                 <p class="cstmr-phone">+91-<%= @customer.phone %></p>

@@ -1,7 +1,6 @@
 .navbar {
   font-weight: bold;
   background-color: #00000080 !important;
-  background-image: asset-url("navbar-shukla.png");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -73,7 +72,7 @@
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 20px;
 }
-.form-group {
+.input-group {
   font-weight: bold;
 }
 
@@ -102,8 +101,7 @@
 }
 
 #login-container {
-  position: absolute;
-  top: 34%;
+  margin-top: 10% !important;
 }
 
 h1#lgninhone {
@@ -297,4 +295,8 @@ h1#lgninhone {
 .car-avatar-bkng-show {
   height: 100px;
   width: 150px;
+}
+
+#login-with-google-btn {
+  
 }

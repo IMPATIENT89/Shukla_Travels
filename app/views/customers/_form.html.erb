@@ -3,7 +3,7 @@
 </div>
 <div class="container " id="cntsgnup"> 
   <div class="row justify-content-center">
-    <div class="col-9">
+    <div class="col-lg-10">
       <%= form_with(model: @customer, local: true) do |form| %>
         <div class="form-group row mt-3">
           <%= form.label :customer_full_name, "Your Full Name", class: "col-6 col-form-label text-light " %>
@@ -39,6 +39,13 @@
           <%= form.submit(@customer.new_record? ? "Sign Up!" : "Update Profile!", class: "btn btn-outline-light btn-lg text-center" )%>
         </div>
       <% end %>
+      <hr style="color: white">
+      <div class="input-group justify-content-center mb-3">
+        <%= button_to '/auth/google_oauth2', data: { turbo: false }, class: "btn btn-outline-light btn-lg text-center", id: "login-with-google-btn" do %>
+          <%= image_tag "google-logo.png", style: "height: 40px" %>
+          Continue with Google!
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

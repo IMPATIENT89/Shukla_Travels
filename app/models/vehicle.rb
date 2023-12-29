@@ -1,8 +1,7 @@
 class Vehicle < ApplicationRecord
     belongs_to :hoste
-    has_many :booking_vehicles
-    has_many :bookings, through: :booking_vehicles
-
+    has_many :bookings
+    has_one_attached :vehicle_image
     
     validates :vehicle_no, presence: true,uniqueness: { case_sensitive: false }, length: { maximum: 15 }
     validates :registration_no, presence: true,uniqueness: { case_sensitive: false }

@@ -1,16 +1,20 @@
 <div class="container mt-3" id="cntlogin"> 
   <div class="row justify-content-center">
-    <div class="col-7">
+    <div class="col-lg-14">
       <%= form_with model: @customer, url: sign_in_customer_path do |form| %>
-        <div class="form-group row mt-3">
-          <%= form.label :email, "Email", class: "col-6 col-form-label text-light " %>
-          <div class="col-14">
+        <div class="input-group justify-content-center mt-3">
+          <div class="col-lg-10">
+            <%= form.label :email, "Email", class: "col-6 col-form-label text-light me-3" %>
+          </div>
+          <div class="col-lg-10">
             <%= form.text_field :email, class: "form-control shadow mb-4 bg-white rounded", placeholder: "Enter your email address" %>
           </div>
         </div>     
-        <div class="form-group row mt-3">
-          <%= form.label :password, "Password", class: "col-6 col-form-label text-light "%>
-          <div class="col-14">
+        <div class="input-group justify-content-center mt-3">
+          <div class="col-lg-10">
+            <%= form.label :password, "Password", class: "col-6 col-form-label text-light me-3"%>
+          </div>
+          <div class="col-lg-10">
             <%= form.password_field :password, class: "form-control shadow mb-4 bg-white rounded", placeholder: "Enter your password" %>
           </div>
         </div>    
@@ -18,6 +22,13 @@
          <%= form.submit "Log In!", class: "btn btn-outline-light btn-lg text-center" %>
         </div>
       <% end %>
+      <hr style="color: white">
+      <div class="input-group justify-content-center mb-3">
+        <%= button_to '/auth/google_oauth2', data: { turbo: false }, class: "btn btn-outline-light btn-lg text-center", id: "login-with-google-btn" do %>
+          <%= image_tag "google-logo.png", style: "height: 40px" %>
+          Continue with Google!
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

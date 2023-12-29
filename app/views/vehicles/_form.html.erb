@@ -29,6 +29,12 @@
             <%= form.text_field :no_of_seats, class: "form-control shadow mb-4 bg-white rounded", placeholder: "Number of seats available in your vehicle" %>
           </div>
         </div>    
+        <div class="form-group row">
+          <%= form.label :vehicle_image, "Vehicle Image", class: "col-6 col-form-label text-light " %>
+          <div class="col-14"> 
+            <%= form.file_field :vehicle_image, class: "form-control shadow mb-4 bg-white rounded" %>
+          </div>
+        </div>    
         <div class="input-group justify-content-center mb-3">
           <%= form.submit(@vehicle.new_record? ? "Confirm Registration!" : "Update Vehicle!", class: "btn btn-outline-light btn-lg text-center") %>
         </div>

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get "sign_in_customer", to: "sessions#new"
   post "sign_in_customer", to: "sessions#create"
+  get 'auth/google_oauth2/callback', to: 'sessions#create_via_google'
 
   delete "logout_customer", to: "sessions#destroy"
 

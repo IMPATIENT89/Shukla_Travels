@@ -4,6 +4,7 @@ class BookingsController < ApplicationController
 
     def new
         @booking = Booking.new
+        @vehicles = Vehicle.all
     end
 
     def show
@@ -15,6 +16,7 @@ class BookingsController < ApplicationController
     end
 
     def create
+        @vehicles = Vehicle.all
         @booking = Booking.new(booking_params)
         @booking.customer = current_customer
         if @booking.save
@@ -59,7 +61,7 @@ class BookingsController < ApplicationController
     private
 
     def booking_params
-      params.require(:booking).permit(:how_many_people, :booking_from, :booking_to, :booking_date, :choose_car, vehicle_ids: [])
+      params.require(:booking).permit(:how_many_people, :booking_from, :booking_to, :booking_date, :choose_car, :vehicle_id)
     end
     
     def payment_method_params
