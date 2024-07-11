@@ -42,55 +42,48 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_21_173253) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "booking_vehicles", force: :cascade do |t|
-    t.integer "booking_id"
-    t.integer "vehicle_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "bookings", force: :cascade do |t|
     t.string "booking_from", null: false
     t.string "booking_to", null: false
-    t.datetime "booking_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "customer_id"
+    t.datetime "booking_date"
     t.integer "how_many_people"
     t.string "choose_car"
-    t.float "amount_paid"
     t.string "stripe_transaction_id"
+    t.float "amount_paid"
     t.integer "vehicle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "customers", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest"
     t.string "phone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "customer_full_name"
     t.string "stripe_customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "hostes", force: :cascade do |t|
+  create_table "hosts", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest"
     t.string "phone", null: false
     t.integer "no_of_cars"
+    t.string "host_full_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "host_full_name"
   end
 
   create_table "vehicles", force: :cascade do |t|
     t.string "vehicle_no", null: false
     t.string "registration_no", null: false
+    t.integer "no_of_seats"
+    t.integer "host_id"
+    t.string "car_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "hoste_id"
-    t.integer "no_of_seats"
-    t.string "car_name"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

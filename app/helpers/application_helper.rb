@@ -4,7 +4,7 @@ module ApplicationHelper
     end
 
     def current_host
-        @current_host ||= Hoste.find(session[:hoste_id]) if session[:hoste_id]
+        @current_host ||= Host.find(session[:host_id]) if session[:host_id]
     end
     
     def logged_in_as_customer?
