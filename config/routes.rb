@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   delete "logout_customer", to: "sessions#destroy"
 
   resources :customers
-  resources :hosts
+  resources :hostes
 
   get "sign_in_host", to: "sessions_host#new"
   post "sign_in_host", to: "sessions_host#create"

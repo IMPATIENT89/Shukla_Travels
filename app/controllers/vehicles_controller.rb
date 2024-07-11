@@ -15,7 +15,7 @@ class VehiclesController < ApplicationController
     
     def create
         @vehicle = Vehicle.new(vehicle_params)
-        @vehicle.host = current_host
+        @vehicle.hoste = current_host
         if @vehicle.save
           redirect_to @vehicle, notice: "Your vehicle is successfully registered"
         else

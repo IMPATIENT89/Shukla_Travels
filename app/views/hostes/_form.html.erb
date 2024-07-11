@@ -1,10 +1,10 @@
 <div class="container" id="cnterror">
-  <%= render 'shared/errors', obj: @host %>
+  <%= render 'shared/errors', obj: @hoste %>
 </div>
 <div class="container" id="cntsgnup">
   <div class="row justify-content-center">
     <div class="col-lg-9">
-      <%= form_with(model: @host, local: true) do |form| %>
+      <%= form_with(model: @hoste, local: true) do |form| %>
         <div class="form-group row mt-3">
           <%= form.label :host_full_name, "Your Full Name", class: "col-6 col-form-label text-light " %>
           <div class="col-14">
@@ -42,7 +42,7 @@
           </div>
         </div>   
         <div class="input-group justify-content-center mb-3">
-          <%= form.submit(@host.new_record? ? "Sign Up!" : "Confirm Edit!", class: "btn btn-outline-light btn-lg text-center") %>
+          <%= form.submit(@hoste.new_record? ? "Sign Up!" : "Confirm Edit!", class: "btn btn-outline-light btn-lg text-center") %>
         </div>
       <% end %>
     </div>
