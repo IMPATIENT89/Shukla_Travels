@@ -3,11 +3,11 @@
   <div class="container-fluid" style="overflow-x: auto;">
     <div class="row justify-content-md-center">
     <% @vehicles.each do |vehicle| %>
-      <% if vehicle.hoste == current_host %>
+      <% if vehicle.host == current_host %>
           <div class="col-lg-5 mt-3">
             <div class="card text-center shadow mb-3 bg-white rounded">
               <div class="card-header ">
-                 Vehicle by <%= link_to vehicle.hoste.host_full_name, hoste_path(vehicle.hoste) %> 
+                 Vehicle by <%= link_to vehicle.host.host_full_name, host_path(vehicle.host) %> 
               </div>       
               <div class="card-body">
                 <%= image_tag("care.jpeg", class: "car-avatar")%>

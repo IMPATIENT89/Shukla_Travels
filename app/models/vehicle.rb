@@ -1,5 +1,5 @@
 class Vehicle < ApplicationRecord
-    belongs_to :hoste
+    belongs_to :host
     has_many :bookings
     has_one_attached :vehicle_image
     
