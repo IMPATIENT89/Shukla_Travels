@@ -1,14 +1,16 @@
-<body class="booking" id="vhcnew">
-  <% if logged_in_as_host? %>       
-    <div class="row justify-content-center" style="margin-right: 0 !important;">  
-      <div class="col-lg-4 mt-5">
-        <div class="container text-center">
-          <h1 class="text-white" style="font-weight: bold;"> Do your Registration</h1>
+<body class="bg-light">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="card shadow-lg">
+          <div class="card-header bg-primary text-white text-center py-4">
+            <h1 class="fw-bold">Do your Registration</h1>
+          </div>
+          <div class="card-body p-4">
+            <%= render 'form' %>
+          </div>
         </div>
-        <%= render 'form' %>
       </div>
-    </div>    
-  <% else %>
-    <%= link_to "Please Login to continue the registration", sign_in_host_path %>
-  <% end %>
+    </div>
+  </div>
 </body>

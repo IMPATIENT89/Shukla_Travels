@@ -1,49 +1,81 @@
-<body class="signbody" id="accntbody">  
-  <% if @host == current_host%>
-    <div class="container-fluid mt-5" style="overflow-x: auto;">
-      <div class="row justify-content-center">
-          <div class="col-lg-2 mt-5 " >
-            <div class="card shadow mb-3" id="accntcard">
-              <div class="card-body">   
-                <h4 class="card-title mb-2 text-center"> Your Details</h4>
-                <div class="myimg mt-2">
-                  <%= image_tag("myself.jpg", class: "avatar")%>
+<body class="bg-light">
+  <% if @host == current_host %>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card shadow h-100">
+          <div class="card-body text-center">
+            <h4 class="card-title mb-4">Your Details</h4>
+            <div class="mb-3">
+              <%= image_tag("myself.jpg", class: "rounded-circle img-thumbnail", style: "width: 150px; height: 150px; object-fit: cover;") %>
+            </div>
+            <h5 class="mb-2"><%= @host.host_full_name %></h5>
+            <p class="text-muted mb-1">+91-<%= @host.phone %></p>
+            <p class="text-muted mb-3"><%= @host.email %></p>
+            <hr>
+            <div class="d-grid gap-2">
+              <%= link_to "My Vehicles", vehicles_path, class: "btn btn-outline-primary" %>
+              <%= link_to "Update Profile", edit_host_path, class: "btn btn-outline-primary" %>
+              <%= link_to "Register a Vehicle", new_vehicle_path, class: "btn btn-outline-primary" %>
+              <button class="btn btn-outline-secondary" disabled>Profile Verification</button>
+              <button class="btn btn-outline-secondary" disabled>Contact Support</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7 col-md-6">
+        <div class="card shadow h-100">
+          <div class="card-body">
+            <div class="bg-primary" style="height: 5px; margin: -1rem -1rem 1rem -1rem;"></div>
+            <h2 class="card-title text-center mb-4">Your Vehicle Profile</h2>
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="bg-light rounded p-3 d-flex justify-content-between align-items-center">
+                  <span class="fw-bold text-secondary">Total Vehicles Uploaded</span>
+                  <div>
+                    <span class="fs-5 fw-bold text-primary"><%= @host.vehicles.count %></span>
+                    <%= link_to "Get points", new_vehicle_path, class: "btn btn-primary btn-sm ms-2" %>
+                  </div>
                 </div>
-                <div class="cstmr-info text-center mt-2">
-                  <p class="cstmr-name"> <%= @host.host_full_name %></p>
-                  <p class="cstmr-phone">+91-<%= @host.phone %></p>
-                  <p class="cstmr-email"><%= @host.email %></p>
-                  <hr>
+              </div>
+              <div class="col-md-6">
+                <div class="bg-light rounded p-3 d-flex justify-content-between align-items-center">
+                  <span class="fw-bold text-secondary">Total Points Earned</span>
+                  <div class="text-end">
+                    <span class="fs-5 fw-bold text-success"><%= (@host.vehicles.count) * 200 %></span>
+                    <small class="d-block text-muted">1 Vehicle = 200 Points, 1 Point = 1 Rupee</small>
+                  </div>
                 </div>
-                <div class="bkngs-link text-center">
-                  <%= link_to "My Vehicles", vehicles_path, class: "text-white"%><hr>
-                  <%= link_to "Update Profile", edit_host_path, class: "text-white"%><hr>
-                  <%= link_to "Register a vehicle", new_vehicle_path, class: "text-white"%><hr>
-                  <p> Profile Verification </p><hr>
-                  <p>Contact Support</p><hr>
-              </div>   
+              </div>
+              <div class="col-md-6">
+                <div class="bg-light rounded p-3 d-flex justify-content-between align-items-center">
+                  <span class="fw-bold text-secondary">Total Vehicles This Month</span>
+                  <span class="fs-5 fw-bold text-warning"><%= @host.vehicles.count %></span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="bg-light rounded p-3 d-flex justify-content-between align-items-center">
+                  <span class="fw-bold text-secondary">Total Vehicles This Year</span>
+                  <span class="fs-5 fw-bold text-info"><%= @host.vehicles.count %></span>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="bg-light rounded p-3 d-flex justify-content-between align-items-center">
+                  <span class="fw-bold text-secondary">Total Vehicles</span>
+                  <span class="fs-5 fw-bold text-primary"><%= @host.vehicles.count %></span>
+                </div>
               </div>
             </div>
           </div>
-    
-          <div class="col-lg-5 ms-5 mt-5">
-            <div class="card shadow mb-3" id="rightcard">
-              <div class="card-body">
-                <h2 class="card-title mb-2 text-center"> Your Vehicle Profile</h2><hr>
-                <h5>Total Vehicles Uploaded = <%= @host.vehicles.count%> <%= link_to "Increase this number to get points", new_vehicle_path, class: "text-white", style: "float: right; "%></h5><hr>
-                <h5>Total Points earned = <%= (@host.vehicles.count) * 200%> <small style="float: right;">1 vehicle = 200 Points, 1 Point = 1 Ruppee</small> </h5><hr>
-                <h5>Total Vehicles = <%= @host.vehicles.count%> </h5><hr>
-                <h5>Total Vehicles = <%= @host.vehicles.count%> </h5><hr>
-                <h5>Total Vehicles = <%= @host.vehicles.count%> </h5><hr>
-                <h5>Total Vehicles = <%= @host.vehicles.count%> </h5><hr>
-                <h5>Total Vehicles = <%= @host.vehicles.count%> </h5><hr>
-                <h5>Total Vehicles = <%= @host.vehicles.count%> </h5><hr>
-              </div>
-            </div>
-          </div>
+        </div>
       </div>
     </div>
+  </div>
   <% else %>
-    <%= link_to "Please login with your account to access your vehicles", sign_in_customer_path %>
+  <div class="container py-5 text-center">
+    <h2 class="mb-4">Access Denied</h2>
+    <%= link_to "Please login with your account to access your vehicles", sign_in_customer_path, class: "btn btn-primary btn-lg" %>
+  </div>
   <% end %>
 </body>

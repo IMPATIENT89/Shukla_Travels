@@ -1,20 +1,28 @@
-<body class="home-page" id="homebody">
-  <div class="container text-center mt-5" id="home-container" >
-    <h1 class= "hhome" id="homehone">Welcome to SHUKLA TRAVELS</h1>
-    <p class= "phome" id="homep">Your one-stop solution for all your vehicle rental needs.</p>
-    <p class= "phome" id="homep">We are a team of passionate individuals who are dedicated to making your vehicle rental experience as smooth and stress-free as possible. Our website offers a wide range of vehicles to choose from, at competitive prices, and an easy and convenient booking process.</p>
-    <p class= "phome" id="homep">With our commitment to providing excellent customer service and an easy-to-use platform, we have quickly become a trusted source for vehicle rentals. Whether you're in need of a car for personal or business use, we have a vehicle to suit your needs.</p>
-    <p class= "phome" id="homep">Our vehicles are well-maintained and come with 24/7 support, so you can rest assured that you'll be on the road safely and comfortably. </p>
-    <p class= "phome" id="homep">At SHUKLA TRAVELS, we believe that everyone should have access to affordable and convenient vehicle rental options, and we're dedicated to making that a reality. So, whether you're planning a road trip, need a car for work, or simply want to upgrade your daily commute, we've got you covered.</p>
-    <p class= "phome" id="homep">Thank you for choosing SHUKLA TRAVELS for your vehicle rental needs. We look forward to helping you hit the road!</p>
-    <%= link_to " Click here to view Our Team", our_team_path, class: "btn btn-primary" %>
-    <% if logged_in_as_customer? %>
-      <%= link_to "Your Booked Vehicles for a trip", bookings_path, class: "btn btn-primary" %>
-    <% elsif logged_in_as_host? %>
-      <%= link_to "Your Uploaded Vehicles", vehicles_path, class: "btn btn-primary" %>
-    <% else %>
-      <%= link_to "Start Booking a Vehicle for trip", sign_in_customer_path, class: "btn btn-primary" %>
-      <%= link_to "Become a Host", new_host_path, class: "btn btn-primary" %>
-    <% end %> 
+<body class="home-page" data-controller="places" style="background-image: url(<%= asset_path('homebg.jpg') %>); background-size: cover; background-position: center; background-attachment: fixed;">
+  <div class="container-fluid py-5" style="max-width: 1200px; /* Increased max-width */"> 
+    <div style="background-color: rgba(0, 0, 0, 0.75); padding: 3rem; border-radius: 0.5rem; color: white;">
+      <h1 style="font-size: 3rem; font-weight: bold; margin-bottom: 1.5rem; color: #ffc107;">Welcome to SHUKLA TRAVELS</h1>
+      <p style="font-size: 1.5rem; margin-bottom: 1.5rem;">Your one-stop solution for all your vehicle rental needs.</p>
+      
+      <div style="margin-bottom: 2rem;">
+        <p style="margin-bottom: 1rem; font-size: 1.1rem;">We are a team of passionate individuals dedicated to making your vehicle rental experience smooth and stress-free. Our website offers a wide range of vehicles at competitive prices, with an easy and convenient booking process.</p>
+        <p style="margin-bottom: 1rem; font-size: 1.1rem;">With our commitment to excellent customer service and an easy-to-use platform, we have quickly become a trusted source for vehicle rentals. Whether you need a car for personal or business use, we have a vehicle to suit your needs.</p>
+        <p style="margin-bottom: 1rem; font-size: 1.1rem;">Our well-maintained vehicles come with 24/7 support, ensuring you'll be on the road safely and comfortably.</p>
+        <p style="margin-bottom: 1rem; font-size: 1.1rem;">At SHUKLA TRAVELS, we believe everyone should have access to affordable and convenient vehicle rental options. Whether you're planning a road trip, need a car for work, or want to upgrade your daily commute, we've got you covered.</p>
+        <p style="margin-bottom: 2rem; font-size: 1.1rem;">Thank you for choosing SHUKLA TRAVELS. We look forward to helping you hit the road!</p>
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+        <%= link_to "Our Team", our_team_path, class: "btn btn-warning", style: "font-size: 1.1rem; padding: 0.75rem 1.5rem; transition: all 0.3s ease-in-out;" %>
+        <% if logged_in_as_customer? %>
+          <%= link_to "Your Booked Vehicles", bookings_path, class: "btn btn-light", style: "font-size: 1.1rem; padding: 0.75rem 1.5rem; transition: all 0.3s ease-in-out;" %>
+        <% elsif logged_in_as_host? %>
+          <%= link_to "Your Uploaded Vehicles", vehicles_path, class: "btn btn-light", style: "font-size: 1.1rem; padding: 0.75rem 1.5rem; transition: all 0.3s ease-in-out;" %>
+        <% else %>
+          <%= link_to "Start Booking a Vehicle", sign_in_customer_path, class: "btn btn-light", style: "font-size: 1.1rem; padding: 0.75rem 1.5rem; transition: all 0.3s ease-in-out;" %>
+          <%= link_to "Become a Host", new_host_path, class: "btn btn-outline-light", style: "font-size: 1.1rem; padding: 0.75rem 1.5rem; transition: all 0.3s ease-in-out;" %>
+        <% end %> 
+      </div>
+    </div>
   </div>
 </body>
