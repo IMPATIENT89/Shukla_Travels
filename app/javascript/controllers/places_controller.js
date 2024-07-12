@@ -1,13 +1,9 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 
-export default class extends Controller {
-  static targets = [ "field", "map", "latitude", "longitude" ]
-
+export default class PlacesController extends Controller {
   connect() {
-    if (typeof(google) != "undefined") {
-      console.log("hey")
-    }
-    console.log("places_controller")
+    console.log("places_controller");
+    alert("hello");
   }
 
 }

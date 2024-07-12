@@ -1,7 +1,8 @@
 {
   "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
     "@popperjs/core": "^2.11.6",
-    "@rails/webpacker": "5.4.3",
+    "@rails/webpacker": "5.4.4",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
     "sass": "^1.57.1",

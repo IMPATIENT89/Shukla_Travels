@@ -8,7 +8,7 @@
   </div>
   <div class="mb-4">
     <%= form.label :booking_from, "Origin Address", class: "form-label" %>
-    <%= form.search_field :booking_from, class: "form-control", placeholder: "Enter the full address of origin" %>
+    <%= form.search_field :booking_from, class: "form-control", placeholder: "Enter the full address of origin", data: { controller: "places" }%>
   </div>
   <div class="mb-4">
     <%= form.label :booking_to, "Destination Address", class: "form-label" %>
