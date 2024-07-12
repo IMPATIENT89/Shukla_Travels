@@ -1,1 +1,32 @@
-<%= link_to vehicle.car_name, vehicle_path(vehicle), class: "badge bg-info me-1 mb-2",style:"font-size: 14px;" %>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  <% @vehicles.each do |vehicle| %>
+    <% if vehicle.host == current_host %>
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <p class="text-center text-muted mb-4">
+              Vehicle Registered by <%= link_to vehicle.host.host_full_name, host_path(vehicle.host), class: "text-decoration-none" %>
+            </p>
+            
+            <div class="text-center mb-4">
+              <%= image_tag vehicle.vehicle_image, class: "img-fluid rounded", style: "max-height: 250px; width: auto;" %>
+            </div>
+            
+            <ul class="list-group list-group-flush mb-4">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Vehicle number:</strong>
+                <span class="badge bg-primary rounded-pill"><%= vehicle.vehicle_no.upcase %></span>
+              </li>
+            <div class="d-grid gap-2">
+              <%= link_to "View", vehicle_path(vehicle), class: "btn btn-outline-primary" %>
+              <%= link_to "Back to all vehicles listing", vehicles_path, class: "btn btn-info" %>
+            </div>
+          </div>
+          <div class="card-footer text-muted">
+            <small>Created <%= time_ago_in_words(vehicle.created_at) %> ago</small>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

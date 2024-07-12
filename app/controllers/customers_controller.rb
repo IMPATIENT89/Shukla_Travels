@@ -1,6 +1,4 @@
 class CustomersController < ApplicationController
-
-
     def new
         @customer = Customer.new
     end
@@ -18,6 +16,7 @@ class CustomersController < ApplicationController
         @customer = Customer.new(customer_params)
         if @customer.save
             session[:customer_id] = @customer.id
+            UserMailer.user_confirmation(@customer).deliver_now
             redirect_to @customer, notice: "Successfully created account. Now, plase login with your credentials"
         else
             render :new, status: :unprocessable_entity
@@ -31,7 +30,7 @@ class CustomersController < ApplicationController
     def update
         @customer = Customer.find(params[:id])
         if @customer.update(customer_params)
-            redirect_to customer, notice: "Your account information was successfully updated"
+            redirect_to @customer, notice: "Your account information was successfully updated"
         else
             render :edit, status: :unprocessable_entity
         end       

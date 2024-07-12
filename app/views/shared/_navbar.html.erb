@@ -1,58 +1,48 @@
-<nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid" >
-    <%= link_to root_path, class: "navbar-brand white", style: "color: white;" do %>
-      <%= image_tag("navbar-shukla.png", alt: "Shukla Travels", class: "navbar-logo",style: "height: 30px;") %>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag("navbar-shukla.png", alt: "Shukla Travels", class: "navbar-logo", style: "height: 30px;") %>
     <% end %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ms-auto">
         <% if logged_in_as_customer? %>
           <li class="nav-item">
-            <%= button_to "Log Out", logout_customer_path, method: :delete, class: "nav-link text-white", style: "background-color: transparent !important;" %>         
-          </li>   
-          <li class="nav-item">
-            <%= link_to "Book a Vehicle ", new_booking_path, class: "nav-link", style: "color: white;" %>
+            <%= link_to "Book a Vehicle", new_booking_path, class: "nav-link" %>
           </li>
-          <li class="nav-item" id="accountnavitem">
-            <%= link_to "Your Account ", current_customer, class: "nav-link ", style: "color: white;" %>
+          <li class="nav-item">
+            <%= link_to "Your Account", current_customer, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= button_to "Log Out", logout_customer_path, method: :delete, class: "btn btn-outline-light ms-2" %>         
+          </li>   
+        <% elsif logged_in_as_host? %>
+          <li class="nav-item">
+            <%= link_to "Register a Vehicle", new_vehicle_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Your Account", current_host, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= button_to "Log Out", logout_host_path, method: :delete, class: "btn btn-outline-light ms-2" %>         
           </li>
         <% else %>
-           <% if logged_in_as_host? %>
-             <li class="nav-item">
-               <%= button_to "Log Out", logout_host_path, method: :delete, class: "nav-link text-white", style: "background-color: transparent !important;" %>         
-             </li>
-             <li class="nav-item">
-               <%= link_to "Register a Vehicle ", new_vehicle_path, class: "nav-link", style: "color: white;" %>
-             </li>
-             <li class="nav-item" id="accountnavitem">
-               <%= link_to "Your Account ", current_host, class: "nav-link ", style: "color: white;" %>
-             </li>
-           <% else %>
-               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false", style="color: white;">Log In</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item">
-                    <%= link_to "Log In as Customer", sign_in_customer_path, class: "nav-link"%>    
-                  </li>
-                  <li class="nav-item">
-                    <%= link_to "Log In as Host", sign_in_host_path, class: "nav-link" %>       
-                  </li> 
-                </ul>
-               </li>
-               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false", style= "color: white;">Sign Up</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item">
-                    <%= link_to "Sign Up as Customer", new_customer_path, class: "nav-link" %>       
-                  </li> 
-                  <li class="nav-item">
-                    <%= link_to "Sign Up as Host", new_host_path, class: "nav-link" %>       
-                  </li> 
-                </ul>
-               </li>                   
-             <% end %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Log In</a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Log In as Customer", sign_in_customer_path, class: "dropdown-item" %></li>
+              <li><%= link_to "Log In as Host", sign_in_host_path, class: "dropdown-item" %></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sign Up</a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Sign Up as Customer", new_customer_path, class: "dropdown-item" %></li>
+              <li><%= link_to "Sign Up as Host", new_host_path, class: "dropdown-item" %></li>
+            </ul>
+          </li>                   
         <% end %>
       </ul>
     </div>

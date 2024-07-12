@@ -1,16 +1,24 @@
-<div class="row">
-<div class="col-lg-10 mx-auto">
-  <div class="card shadow">
-    <div class="card-header">
-      <h4 class="card-title text-center">Booking Confirmation</h4>
-    </div>
-    <div class="card-body">
-      <h3>Greetings from Shukla Travels</h3>
-      <h4>Hello <%= @customer.customer_full_name %> </h4>
-      <p class="lead">Your booking trip from <strong> <%= @booking.booking_from.capitalize%> to <%= @booking.booking_to.capitalize%> has been confirmed. Please scan the following QR code to get booking details. </strong> </p>
-     
-      <%= @svg.html_safe%>
+<body class="bg-light">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="card shadow h-100">
+          <div class="card-header text-center bg-primary text-white">
+            <h4 class="card-title mb-0">Booking Confirmation</h4>
+          </div>
+          <div class="card-body text-center">
+            <h3 class="mb-4">Greetings from Shukla Travels</h3>
+            <h4 class="mb-3">Hello <%= @customer.customer_full_name %></h4>
+            <p class="lead mb-4">
+              Your booking trip from <strong><%= @booking.booking_from.capitalize %> to <%= @booking.booking_to.capitalize %></strong> has been confirmed. 
+              Please scan the following QR code to get booking details.
+            </p>
+            <div class="d-flex justify-content-center">
+              <%= @svg.html_safe %>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
   </div>
-</div>
-</div>
+</body>
