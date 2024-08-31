@@ -5,15 +5,13 @@ class HostsController < ApplicationController
 
     def show
         @host = Host.find(params[:id])
-        @vehicles = @host.vehicles.paginate(page: params[:page], per_page: 10)
+        @vehicles = @host.vehicles.all
     end
 
     def index
-        @hosts = Host.paginate(page: params[:page], per_page: 10)     
+        @hosts = Host.all     
     end
     
-    
-
     def create
         @host = Host.new(host_params)
         if @host.save

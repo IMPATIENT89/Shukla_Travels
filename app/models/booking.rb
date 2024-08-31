@@ -10,7 +10,7 @@ class Booking < ApplicationRecord
     validate :origin_address_and_destination_address_not_same
 
     def booking_date_not_in_past
-      if booking_date < Time.now
+      if booking_date < Time.now 
         errors.add(:booking_date, "can't be in the past")
       end
     end
