@@ -1,7 +1,36 @@
+<% if @auto_refresh %>
+  <script>
+    // Function to check if this is a fresh page load or a refresh
+    function isPageRefresh() {
+      return performance.navigation.type === 1;
+    }
+
+    // If this is not a refresh (i.e., it's a fresh page load), then refresh once
+    if (!isPageRefresh()) {
+      setTimeout(() => {
+        location.reload();
+      }, 1000); // 1-second delay before refresh
+    }
+  </script>
+<% end %>
 <body class="bg-light">
   <div class="container py-3 py-md-5">
     <div class="row justify-content-center">
       <div class="col-12 col-md-10 col-lg-8">
+        <% if @booking.payment_status == 'pending' && @booking.payment_mode == 'upi' %>
+          <div class="text-center mb-3">
+            <button data-controller="razorpay"
+                    data-razorpay-order-id="<%= @booking.order_id %>"
+                    data-razorpay-customer-id="<%= current_customer.razorpay_customer_id %>"
+                    data-razorpay-customer-email="<%= current_customer.email %>"
+                    data-razorpay-booking-id="<%= @booking.id %>"
+                    data-razorpay-target="button"
+                    data-action="click->razorpay#openRazorpay"
+                    class="btn btn-primary mb-3">
+              Pay Now
+            </button>
+          </div>
+        <% end %>
         <div class="card shadow-lg">
           <div class="card-header bg-primary text-white py-3">
             <h2 class="card-title mb-0 text-center h4">
@@ -33,14 +62,78 @@
 
             <ul class="list-group list-group-flush mb-4">
               <li class="list-group-item">
-                <strong>Number of people:</strong> <%= @booking.how_many_people %>
+                <div class="d-flex justify-content-between align-items-center">
+                  <strong>Number of people:</strong>
+                  <span><%= @booking.how_many_people %></span>
+                </div>
               </li>
               <li class="list-group-item">
-                <strong>Date of Journey:</strong> <%= @booking.booking_date.strftime("%B %d, %Y at %I:%M %p") %>
+                <div class="d-flex justify-content-between align-items-center">
+                  <strong>Date of Journey:</strong>
+                  <span><%= @booking.booking_date.strftime("%B %d, %Y at %I:%M %p") %></span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <strong>Return Trip:</strong>
+                  <span><%= @booking.return_trip ? 'Yes' : 'No' %></span>
+                </div>
               </li>
               <% if @booking.vehicle.present? %>
                 <li class="list-group-item">
-                  <strong>Car Chosen:</strong> <%= link_to @booking.vehicle.car_name, vehicle_path(@booking.vehicle), class: "badge bg-info me-1 mb-2",style:"font-size: 14px;" %>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <strong>Car Chosen:</strong>
+                    <%= link_to @booking.vehicle.car_name, vehicle_path(@booking.vehicle), class: "badge bg-info text-dark", style: "font-size: 14px;" %>
+                  </div>
+                </li>
+              <% end %>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <strong>Payment Mode:</strong>
+                  <span class="badge bg-info text-dark"><%= @booking.payment_mode.upcase %></span>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <strong>Payment Status:</strong>
+                  <div class="d-flex align-items-center">
+                    <span class="badge <%= @booking.payment_status == 'paid' ? 'bg-success' : 'bg-warning' %> text-dark">
+                      <%= @booking.payment_status.capitalize %>
+                    </span>
+                    <% if @booking.payment_status == 'pending' && @booking.payment_mode == 'upi' %>
+                      <button data-controller="razorpay"
+                              data-razorpay-order-id="<%= @booking.order_id %>"
+                              data-razorpay-customer-id="<%= current_customer.razorpay_customer_id %>"
+                              data-razorpay-customer-email="<%= current_customer.email %>"
+                              data-razorpay-booking-id="<%= @booking.id %>"
+                              data-razorpay-target="button"
+                              data-action="click->razorpay#openRazorpay"
+                              class="btn btn-sm btn-primary ms-2">
+                        Pay Now
+                      </button>
+                    <% end %>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <strong>Amount Paid:</strong>
+                  <span> Rs <%=(@booking.amount_paid) %></span>
+                </div>
+              </li>
+              <% if @booking.payment_mode == 'upi' %>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <strong>Order ID:</strong>
+                    <code class="bg-light px-2 py-1 rounded"><%= @booking.order_id %></code>
+                  </div>
+                </li>
+              <% elsif @booking.payment_mode == 'card' %>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <strong>Stripe Transaction ID:</strong>
+                    <code class="bg-light px-2 py-1 rounded"><%= @booking.stripe_transaction_id %></code>
+                  </div>
                 </li>
               <% end %>
             </ul>

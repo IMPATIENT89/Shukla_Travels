@@ -8,5 +8,6 @@ class Customer < ApplicationRecord
     validates :email, presence: true
 
     validates :customer_full_name, presence: true,
-                        length: { maximum: 50}               
+                        length: { maximum: 50}    
+
 end

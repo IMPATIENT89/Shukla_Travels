@@ -5,7 +5,7 @@ class CustomersController < ApplicationController
 
     def show
         @customer = Customer.find(params[:id])
-        @bookings = @customer.bookings.paginate(page: params[:page], per_page: 2)
+        @bookings = @customer.bookings.all
     end
     
     def index

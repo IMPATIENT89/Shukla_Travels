@@ -1,19 +1,32 @@
  <div id="cnterror">
   <%= render 'shared/errors', obj: @booking %>
 </div>
-<%= form_with(model: @booking, local: true, class: "needs-validation") do |form| %>
+<%= form_with(model: @booking, local: true, class: "needs-validation", data: { controller: "places payment", action: "google-maps-callback@window->places#initMap", bookings_count: @bookings_count }) do |form| %>
   <div class="mb-4">
     <%= form.label :how_many_people, "Number of People", class: "form-label" %>
     <%= form.text_field :how_many_people, class: "form-control", placeholder: "Number of people that are going" %>
   </div>
   <div class="mb-4">
     <%= form.label :booking_from, "Origin Address", class: "form-label" %>
-    <%= form.search_field :booking_from, class: "form-control", placeholder: "Enter the full address of origin", data: { controller: "places" }%>
+    <%= form.search_field :booking_from, class: "form-control", placeholder: "Enter the full address of origin", data: { places_target: "field", action: "keydown->places#keydown blur->places#calculateDistance" }%>
   </div>
+
   <div class="mb-4">
     <%= form.label :booking_to, "Destination Address", class: "form-label" %>
-    <%= form.search_field :booking_to, class: "form-control", placeholder: "Enter the full address of destination" %>
+    <%= form.search_field :booking_to, class: "form-control", placeholder: "Enter the full address of destination", data: { places_target: "field", action: "keydown->places#keydown blur->places#calculateDistance" } %>
   </div>
+
+  <div class="mb-4">
+    <p data-places-target="distance"></p>
+  </div>
+
+  
+  
+  
+  
+
+
+
   <div class="mb-4">
     <%= form.label :booking_date, "Booking Date and Time", class: "form-label" %>
     <%= form.datetime_field :booking_date, class: "form-control", placeholder: "Enter the date and time of starting the journey"%>
@@ -22,25 +35,70 @@
     <%= form.label :vehicle, "Select Vehicle", class: "form-label" %>
     <%= form.select(:vehicle_id, options_for_select(@vehicles.map { |vehicle| [vehicle.car_name, vehicle.id] }), { prompt: "Make the selection from the list below"}, { class: "form-select"}) %>
   </div>
-  <% if @booking.new_record? %>
-    <h4 class="mt-5 mb-3">Card Details</h4>
-    <hr>
-    <div class="mb-3">
-      <%= form.label :card_number, class: "form-label" %>
-      <%= form.text_field :card_number, class: "form-control", required: true %>
+
+  
+<div class="mb-4">
+  <%= form.check_box :return_trip, class: "form-check-input", data: { action: "change->places#toggleReturnTrip" } %>
+  <%= form.label :return_trip, "Return Trip (Price will be doubled)", class: "form-check-label" %>
+</div>
+
+<!-- ... (remove the apply_discount checkbox) ... -->
+
+<%= form.hidden_field :amount_paid, data: { places_target: "amountPaid" } %>
+
+<div class="card mb-4 shadow-sm">
+  <div class="card-header bg-primary text-white">
+    <h5 class="mb-0">Cost Breakdown</h5>
+  </div>
+  <div class="card-body">
+    <div class="row mb-2">
+      <div class="col-8">Base Fare:</div>
+      <div class="col-4 text-end">Rs. <span data-places-target="baseFare">0.00</span></div>
     </div>
-    <div class="row g-3 mb-4">
-      <div class="col-sm-4">
-        <%= form.label :cvv, class: "form-label" %>
-        <%= form.text_field :cvv, class: "form-control", required: true, maxlength: 4 %>
+    <div class="row mb-2" data-places-target="returnTripRow" style="display: none;">
+      <div class="col-8">Return Trip Fee:</div>
+      <div class="col-4 text-end">Rs. <span data-places-target="returnTripFee">0.00</span></div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-8"><strong>Total Amount:</strong></div>
+      <div class="col-4 text-end"><strong>Rs. <span data-places-target="totalAmount">0.00</span></strong></div>
+    </div>
+  </div>
+</div>
+  <% if @booking.new_record? %>
+    <div class="mb-4">
+      <%= form.label :payment_mode, "Choose Payment Method", class: "form-label" %>
+      <%= form.select :payment_mode, 
+                      options_for_select([
+                        ['Credit/Debit Card', 'card'],
+                        ['UPI', 'upi'],
+                        ['Cash', 'cash']
+                      ]), 
+                      { prompt: "Select a payment method" },
+                      { class: "form-select", data: { action: "change->payment#toggleCardFields" } } %>
+    </div>
+  
+    <div data-payment-target="cardFields" style="display: none;">
+      <h4 class="mt-5 mb-3">Card Details</h4>
+      <hr>
+      <div class="mb-3">
+        <%= form.label :card_number, class: "form-label" %>
+        <%= form.text_field :card_number, class: "form-control" %>
       </div>
-      <div class="col-sm-4">
-        <%= form.label :month, "Expiry Month", class: "form-label" %>
-        <%= form.number_field :exp_month, class: "form-control", required: true, min: 1, max: 12 %>
-      </div>
-      <div class="col-sm-4">
-        <%= form.label :exp_year, "Expiry Year", class: "form-label" %>
-        <%= form.text_field :exp_year, class: "form-control", required: true, min: 2022, max: 2026 %>
+      <div class="row g-3 mb-4">
+        <div class="col-sm-4">
+          <%= form.label :cvv, class: "form-label" %>
+          <%= form.text_field :cvv, class: "form-control", maxlength: 4 %>
+        </div>
+        <div class="col-sm-4">
+          <%= form.label :month, "Expiry Month", class: "form-label" %>
+          <%= form.number_field :exp_month, class: "form-control", min: 1, max: 12 %>
+        </div>
+        <div class="col-sm-4">
+          <%= form.label :exp_year, "Expiry Year", class: "form-label" %>
+          <%= form.text_field :exp_year, class: "form-control", min: 2022, max: 2026 %>
+        </div>
       </div>
     </div>
   <% end %>

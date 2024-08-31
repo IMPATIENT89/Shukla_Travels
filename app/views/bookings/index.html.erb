@@ -1,6 +1,19 @@
 <body class="bg-light">
   <div class="container py-5">
-    <h1 class="text-center mb-5">Your Bookings</h1>
-    <%= render "booking" %>
+      <% if @bookings.present? %>
+        <h1 class="text-center text-primary mb-5">Your Bookings</h1>
+        <%= render "booking" %>
+      <% else %>
+        <div class="card shadow border-0 rounded-lg">
+          <div class="card-body p-5 text-center" style="background-image: url('data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%239C92AC" fill-opacity="0.1" fill-rule="evenodd"%3E%3Cpath d="M0 40L40 0H20L0 20M40 40V20L20 40"/%3E%3C/g%3E%3C/svg%3E');">
+            <img src="https://cdn.jsdelivr.net/npm/twemoji@11.3.0/2/svg/1f4c5.svg" alt="Calendar emoji" class="mb-4" style="width: 80px; height: 80px;">
+            <h2 class="text-primary mb-3">No Bookings Yet</h2>
+            <p class="lead mb-4 text-muted">Your schedule is clear. Ready to plan your next adventure?</p>
+            <%= link_to new_booking_path, class: "btn btn-primary btn-lg px-5 shadow-sm" do %>
+              <i class="fas fa-plus-circle me-2"></i>Create Your First Booking
+            <% end %>
+          </div>
+        </div>
+      <% end %>
   </div>
 </body>

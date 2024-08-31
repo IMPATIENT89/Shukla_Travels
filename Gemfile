@@ -49,7 +49,7 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-gem "will_paginate", "~> 3.3", ">= 3.3.1"
+# gem "will_paginate", "~> 3.3", ">= 3.3.1"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -88,6 +88,10 @@ gem 'omniauth-google-oauth2', '~> 1.1', '>= 1.1.1'
 gem "omniauth-rails_csrf_protection"
 gem 'open-uri', '~> 0.4.1'
 gem 'image_processing', '~> 1.12', '>= 1.12.2'
+gem 'razorpay', '~> 3.2', '>= 3.2.1'
+gem 'devise', '~> 4.9', '>= 4.9.4'
+gem 'activeadmin'
+gem 'kaminari', '~> 1.2', '>= 1.2.2'
 
 
 
